@@ -1,0 +1,28 @@
+[package]
+name = "mk20d7"
+version = "0.1.0"
+authors = ["Dylan Frankland <dylan@frankland.io>"]
+categories = ["embedded", "hardware-support", "no-std"]
+description = "Peripheral access API for MK20D7 microcontrollers"
+documentation = "https://docs.rs/mk20d7"
+repository = "https://github.com/dfrankland/mk20d7"
+keywords = ["arm", "cortex-m", "mk20d7", "svd2rust"]
+license = "MIT"
+
+[build-dependencies]
+# Use once upstream has the ability to use a `build.rs`
+# svd2rust = "*"
+svd2rust = { git = "https://github.com/dfrankland/svd2rust" }
+quote = "0.3.15"
+
+[dependencies]
+bare-metal = "0.1.0"
+cortex-m = "0.4.0"
+vcell = "0.1.0"
+
+[dependencies.cortex-m-rt]
+optional = true
+version = "0.3.0"
+
+[features]
+rt = ["cortex-m-rt"]
