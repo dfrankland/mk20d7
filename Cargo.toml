@@ -9,6 +9,10 @@ repository = "https://github.com/dfrankland/mk20d7"
 keywords = ["arm", "cortex-m", "mk20d7", "svd2rust"]
 license = "MIT"
 
+[lib]
+name = "mk20d7"
+path = "./src/lib.rs"
+
 [build-dependencies]
 # Use once `svd2rust@>0.12.0` is published
 # svd2rust = "*"
