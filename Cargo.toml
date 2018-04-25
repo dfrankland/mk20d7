@@ -10,9 +10,9 @@ keywords = ["arm", "cortex-m", "mk20d7", "svd2rust"]
 license = "MIT"
 
 [build-dependencies]
-# Use once upstream has the ability to use a `build.rs`
+# Use once `svd2rust@>0.12.0` is published
 # svd2rust = "*"
-svd2rust = { git = "https://github.com/dfrankland/svd2rust" }
+svd2rust = { git = "https://github.com/japaric/svd2rust" }
 quote = "0.3.15"
 
 [dependencies]
