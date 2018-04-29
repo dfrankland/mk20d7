@@ -1,5 +1,6 @@
-extern crate svd2rust;
+extern crate rustfmt_nightly;
 #[macro_use] extern crate quote;
+extern crate svd2rust;
 
 use std::path::PathBuf;
 use std::io::prelude::*;
@@ -15,7 +16,12 @@ fn main() {
         #(#items)*
     };
 
+    let lib = rustfmt_nightly::format_snippet(
+        &peripherals.to_string(),
+        &rustfmt_nightly::load_config(None, None).unwrap().0,
+    ).unwrap();
+
     let out_path = PathBuf::from("./src/lib.rs");
     let mut f = File::create(out_path).unwrap();
-    f.write_all(peripherals.to_string().as_bytes()).unwrap();
+    f.write_all(lib.as_bytes()).unwrap();
 }
