@@ -11,6 +11,3 @@ Cargo.lock
 
 # Linter files
 linter-target
-
-# Generated files
-/src/lib.rs
