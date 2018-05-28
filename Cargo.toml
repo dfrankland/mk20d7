@@ -13,21 +13,14 @@ license = "MIT"
 name = "mk20d7"
 path = "./src/lib.rs"
 
-[build-dependencies]
-quote = "0.3.15"
-rustfmt-nightly = "0.6.0"
-# Use once `svd2rust@>0.12.0` is published
-# svd2rust = "*"
-svd2rust = { git = "https://github.com/japaric/svd2rust" }
-
 [dependencies]
-bare-metal = "0.1.0"
-cortex-m = "0.4.0"
+bare-metal = "0.2.0"
+cortex-m = "0.5.2"
 vcell = "0.1.0"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.3.0"
+version = "0.5.1"
 
 [features]
 rt = ["cortex-m-rt"]
