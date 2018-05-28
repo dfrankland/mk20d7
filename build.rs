@@ -1,27 +1,16 @@
-extern crate rustfmt_nightly;
-#[macro_use] extern crate quote;
-extern crate svd2rust;
-
-use std::path::PathBuf;
-use std::io::prelude::*;
+use std::env;
 use std::fs::File;
-
+use std::io::Write;
+use std::path::PathBuf;
 fn main() {
-    let xml = include_str!("./MK20D7.svd");
-    let device = svd2rust::svd::parse(xml);
-    let target = svd2rust::target::Target::CortexM;
-    let items = svd2rust::generate::device::render(&device, &target).unwrap();
-
-    let peripherals = quote! {
-        #(#items)*
-    };
-
-    let lib = rustfmt_nightly::format_snippet(
-        &peripherals.to_string(),
-        &rustfmt_nightly::load_config(None, None).unwrap().0,
-    ).unwrap();
-
-    let out_path = PathBuf::from("./src/lib.rs");
-    let mut f = File::create(out_path).unwrap();
-    f.write_all(lib.as_bytes()).unwrap();
+    if env::var_os("CARGO_FEATURE_RT").is_some() {
+        let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
+        File::create(out.join("device.x"))
+            .unwrap()
+            .write_all(include_bytes!("device.x"))
+            .unwrap();
+        println!("cargo:rustc-link-search={}", out.display());
+        println!("cargo:rerun-if-changed=device.x");
+    }
+    println!("cargo:rerun-if-changed=build.rs");
 }
