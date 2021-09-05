@@ -426,7 +426,7 @@ pub enum Interrupt {
     #[doc = "91 - PORTE"]
     PORTE,
 }
-unsafe impl ::bare_metal::Nr for Interrupt {
+unsafe impl ::cortex_m::interrupt::Nr for Interrupt {
     #[inline]
     fn nr(&self) -> u8 {
         match *self {
@@ -1706,7 +1706,6 @@ impl Deref for MCM {
 }
 #[doc = "Core Platform Miscellaneous Control Module"]
 pub mod mcm;
-#[allow(private_no_mangle_statics)]
 #[no_mangle]
 static mut DEVICE_PERIPHERALS: bool = false;
 #[doc = r" All the peripherals"]
