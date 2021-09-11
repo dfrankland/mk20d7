@@ -1,6 +1,6 @@
 [package]
 name = "mk20d7"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Dylan Frankland <dylan@frankland.io>"]
 categories = ["embedded", "hardware-support", "no-std"]
 description = "Peripheral access API for MK20D7 microcontrollers"
